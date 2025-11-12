@@ -111,41 +111,91 @@
   </section>
 
   <!-- About -->
-  <section id="about" class="py-20 bg-white">
-    <div class="container mx-auto px-6">
-      <h2 class="retro-font text-4xl font-bold text-center neon-text mb-12">ABOUT_ME.PY</h2>
-      <div class="max-w-4xl mx-auto">
-        <div class="terminal-window">
-          <div class="terminal-header">
-            <div class="terminal-dot bg-red-500"></div>
-            <div class="terminal-dot bg-yellow-500"></div>
-            <div class="terminal-dot bg-green-500"></div>
-          </div>
-          <div id="terminal-content">
-            <div class="mb-2">$ python about_alex.py</div>
-            <div class="mb-2">Initializing developer profile...</div>
-            <div class="mb-4">Profile loaded successfully!</div>
-            <div class="mb-2">class AlexNG:</div>
-            <div class="ml-4 mb-2">def __init__(self):</div>
-            <div class="ml-8 mb-2">self.name = "Alex NG"</div>
-            <div class="ml-8 mb-2">self.role = "Python Developer"</div>
-            <div class="ml-8 mb-2">self.passion = "Data Pattern Recognition"</div>
-            <div class="ml-8 mb-2">self.status = "Job Seeking"</div>
-            <div class="ml-8 mb-2">self.skills = ["Python","Power BI","Excel","SQL","Data Analysis"]</div>
-            <div class="mb-4">_</div>
-          </div>
+  <!-- About Section with Typewriter Effect -->
+<section id="about" class="py-20 bg-white">
+  <div class="container mx-auto px-6">
+    <h2 class="retro-font text-4xl font-bold text-center neon-text mb-12 glitch">ABOUT_ME.PY</h2>
+    <div class="max-w-4xl mx-auto">
+      <div class="terminal-window">
+        <div class="terminal-header">
+          <div class="terminal-dot bg-red-500"></div>
+          <div class="terminal-dot bg-yellow-500"></div>
+          <div class="terminal-dot bg-green-500"></div>
         </div>
-        <div class="mt-8 cyber-border p-6">
-          <p class="text-gray-700 leading-relaxed">
-            I'm a passionate Python developer with a keen eye for discovering meaningful patterns in data.
-            My expertise lies in transforming raw data into actionable insights using Python and Excel.
-            I thrive on solving complex problems and building efficient solutions that drive business value.
-            Currently, I'm actively seeking new opportunities where I can contribute my skills and continue growing as a developer.
-          </p>
-        </div>
+
+        <!-- Typewriter text -->
+        <div id="terminal-content" class="text-green-400"></div>
+      </div>
+
+      <div class="mt-8 cyber-border p-6">
+        <p class="text-gray-700 leading-relaxed">
+          I'm a passionate Python developer with a keen eye for discovering meaningful patterns in data.
+          My expertise lies in transforming raw data into actionable insights using Python and Excel.
+          I thrive on solving complex problems and building efficient solutions that drive business value.
+          Currently, I'm actively seeking new opportunities where I can contribute my skills and continue growing as a developer.
+        </p>
       </div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- Typewriter Script -->
+<script>
+  const textLines = [
+    "$ python about_alex.py",
+    "Initializing developer profile...",
+    "Profile loaded successfully!",
+    "class AlexNG:",
+    "    def __init__(self):",
+    "        self.name = 'Alex NG'",
+    "        self.role = 'Python Developer'",
+    "        self.passion = 'Data Pattern Recognition'",
+    "        self.status = 'Job Seeking'",
+    "        self.skills = ['Python','Power BI','Excel','SQL','Data Analysis']",
+  ];
+
+  const content = document.getElementById("terminal-content");
+
+  let line = 0;
+  let char = 0;
+  let typingSpeed = 2; // 打字速度 (毫秒)
+  let delayBetweenLines = 400; // 每行之間停頓時間
+
+  function typeLine() {
+    if (line < textLines.length) {
+      if (char < textLines[line].length) {
+        content.innerHTML += textLines[line][char];
+        char++;
+        setTimeout(typeLine, typingSpeed);
+      } else {
+        content.innerHTML += "<br>";
+        char = 0;
+        line++;
+        setTimeout(typeLine, delayBetweenLines);
+      }
+    } else {
+      // 打完全部行後，顯示閃爍光標
+      const cursor = document.createElement("span");
+      cursor.classList.add("typing-cursor");
+      cursor.textContent = "_";
+      content.appendChild(cursor);
+    }
+  }
+
+  typeLine();
+</script>
+
+<style>
+  .typing-cursor {
+    display: inline-block;
+    margin-left: 4px;
+    animation: blink 1s infinite;
+  }
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+</style>
 
   <!-- Skills -->
   <section id="skills" class="py-20 bg-gray-50">
