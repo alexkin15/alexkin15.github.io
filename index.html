@@ -4,377 +4,280 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Alex NG - Python Developer & Data Analyst</title>
+
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      --neon-cyan:#00ffff;
-      --neon-pink:#ff00ff;
-      --neon-green:#00ff00;
-      --retro-purple:#6b46c1;
-      --bg-light:#f8fafc;
+    body { font-family: 'Inter', sans-serif; }
+
+    /* Multi-line typewriter */
+    .terminal-line {
+      opacity: 0;
+      white-space: pre-wrap;
+      font-family: monospace;
     }
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      font-family:'Share Tech Mono',monospace;
-      background:linear-gradient(135deg,#f8fafc 0%,#e2e8f0 100%);
-      overflow-x:hidden;
+
+    .cursor {
+      border-right: 2px solid #60a5fa;
+      animation: blink 0.7s infinite;
+      width: fit-content;
     }
-    .retro-font{font-family:'Orbitron',monospace}
-    .neon-text{color:var(--retro-purple);text-shadow:0 0 10px rgba(107,70,193,.5)}
-    .cyber-border{
-      position:relative;border:2px solid var(--neon-cyan);
-      background:rgba(255,255,255,.9);
-      box-shadow:0 0 20px rgba(0,255,255,.3), inset 0 0 20px rgba(0,255,255,.1);
-      border-radius:12px;
-    }
-    .cyber-border::before{
-      content:'';position:absolute;top:-2px;left:-2px;right:-2px;bottom:-2px;
-      background:linear-gradient(45deg,var(--neon-cyan),var(--neon-pink),var(--neon-green),var(--neon-cyan));
-      z-index:-1;border-radius:inherit;animation:borderGlow 3s ease-in-out infinite alternate;
-    }
-    @keyframes borderGlow{0%{opacity:.5}100%{opacity:1}}
-    .glitch{position:relative;animation:glitch 2s infinite}
-    @keyframes glitch{
-      0%,90%,100%{transform:translate3d(0,0,0)}
-      10%,30%,50%,70%{transform:translate3d(-1px,0,0)}
-      20%,40%,60%,80%{transform:translate3d(1px,0,0)}
-    }
-    .scanlines{position:relative;overflow:hidden}
-    .scanlines::after{
-      content:'';position:absolute;inset:0;
-      background:linear-gradient(transparent 50%,rgba(0,255,255,.03) 50%);
-      background-size:100% 4px;pointer-events:none;animation:scanline .1s linear infinite;
-    }
-    @keyframes scanline{0%{transform:translateY(0)}100%{transform:translateY(4px)}}
-    .hover-glow{transition:all .3s ease}
-    .hover-glow:hover{box-shadow:0 0 30px rgba(0,255,255,.6);transform:translateY(-2px)}
-    .skill-bar{
-      background:linear-gradient(90deg,var(--neon-cyan),var(--neon-pink));
-      height:8px;border-radius:4px;position:relative;overflow:hidden
-    }
-    .skill-bar::after{
-      content:'';position:absolute;top:0;left:-100%;width:100%;height:100%;
-      background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);
-      animation:shimmer 2s infinite;
-    }
-    @keyframes shimmer{0%{left:-100%}100%{left:100%}}
-    .terminal-window{
-      background:#1e293b;border-radius:8px;padding:20px;
-      font-family:'Share Tech Mono',monospace;color:var(--neon-green);
-      box-shadow:0 0 30px rgba(0,0,0,.5)
-    }
-    .terminal-header{display:flex;gap:8px;margin-bottom:15px}
-    .terminal-dot{width:12px;height:12px;border-radius:50%}
-    .typing-animation{border-right:2px solid var(--neon-green);animation:blink 1s infinite}
-    @keyframes blink{0%,50%{border-color:var(--neon-green)}51%,100%{border-color:transparent}}
+
+    @keyframes blink { 50% { border-color: transparent; } }
   </style>
 </head>
-<body class="bg-gray-50">
 
-  <!-- Navigation -->
-  <nav class="fixed top-0 left-0 right-0 z-50 cyber-border backdrop-blur-md">
-    <div class="container mx-auto px-6 py-4">
-      <div class="flex justify-between items-center">
-        <div class="retro-font text-2xl font-bold neon-text glitch">ALEX.NG</div>
-        <div class="hidden md:flex space-x-6">
-          <a href="#home" class="hover-glow px-4 py-2 rounded border border-cyan-400 text-purple-700 hover:bg-cyan-50 transition-all">HOME</a>
-          <a href="#about" class="hover-glow px-4 py-2 rounded border border-cyan-400 text-purple-700 hover:bg-cyan-50 transition-all">ABOUT</a>
-          <a href="#skills" class="hover-glow px-4 py-2 rounded border border-cyan-400 text-purple-700 hover:bg-cyan-50 transition-all">SKILLS</a>
-          <a href="#projects" class="hover-glow px-4 py-2 rounded border border-cyan-400 text-purple-700 hover:bg-cyan-50 transition-all">PROJECTS</a>
-          <a href="#contact" class="hover-glow px-4 py-2 rounded border border-cyan-400 text-purple-700 hover:bg-cyan-50 transition-all">CONTACT</a>
-        </div>
-      </div>
+<body class="bg-gray-900 text-gray-200">
+
+<!-- NAVIGATION -->
+<nav class="fixed top-0 left-0 right-0 bg-gray-800 border-b border-gray-700 z-50">
+  <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <div class="text-2xl font-bold text-blue-400">ALEX NG</div>
+    <div class="hidden md:flex gap-6 font-semibold text-gray-300">
+      <a href="#home" class="hover:text-blue-400">Home</a>
+      <a href="#about" class="hover:text-blue-400">About</a>
+      <a href="#skills" class="hover:text-blue-400">Skills</a>
+      <a href="#projects" class="hover:text-blue-400">Projects</a>
+      <a href="#contact" class="hover:text-blue-400">Contact</a>
     </div>
-  </nav>
+  </div>
+</nav>
 
-  <!-- Hero -->
-  <section id="home" class="min-h-screen flex items-center justify-center pt-20 scanlines">
-    <div class="container mx-auto px-6 text-center">
-      <h1 class="retro-font text-6xl md:text-8xl font-black neon-text mb-6 glitch">ALEX NG</h1>
-      <h2 class="text-2xl md:text-3xl text-gray-700 mb-4">PYTHON DEVELOPER & DATA ANALYST</h2>
-      <p class="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
-        Passionate about finding patterns in data and building intelligent solutions.
-        Currently seeking new opportunities to make an impact.
-      </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="#projects"
-           class="hover-glow px-8 py-3 bg-gradient-to-r from-cyan-400 to-purple-600 text-white font-bold rounded-lg transform transition-all">
-          VIEW PROJECTS
-        </a>
-        <button class="hover-glow px-8 py-3 border-2 border-cyan-400 text-purple-700 font-bold rounded-lg transition-all">
-          DOWNLOAD CV
-        </button>
-      </div>
-    </div>
-  </section>
+<!-- HERO SECTION -->
+<section id="home" class="min-h-screen flex items-center justify-center pt-20">
+  <div class="text-center max-w-3xl mx-auto px-6">
+    <h1 class="text-5xl md:text-7xl font-extrabold text-white mb-4">Alex NG</h1>
+    <h2 class="text-xl md:text-2xl text-blue-400 font-semibold mb-6">
+      Python Developer & Data Analyst
+    </h2>
+    <p class="text-gray-400 text-lg max-w-xl mx-auto mb-8">
+      Passionate about discovering patterns in data, building intelligent solutions,
+      and solving real-world problems through technology.
+    </p>
 
-  <!-- About -->
-  <!-- About Section with Typewriter Effect -->
-<section id="about" class="py-20 bg-white">
-  <div class="container mx-auto px-6">
-    <h2 class="retro-font text-4xl font-bold text-center neon-text mb-12 glitch">ABOUT_ME.PY</h2>
-    <div class="max-w-4xl mx-auto">
-      <div class="terminal-window">
-        <div class="terminal-header">
-          <div class="terminal-dot bg-red-500"></div>
-          <div class="terminal-dot bg-yellow-500"></div>
-          <div class="terminal-dot bg-green-500"></div>
-        </div>
-
-        <!-- Typewriter text -->
-        <div id="terminal-content" class="text-green-400"></div>
-      </div>
-
-      <div class="mt-8 cyber-border p-6">
-        <p class="text-gray-700 leading-relaxed">
-          I'm a passionate Python developer with a keen eye for discovering meaningful patterns in data.
-          My expertise lies in transforming raw data into actionable insights using Python and Excel.
-          I thrive on solving complex problems and building efficient solutions that drive business value.
-          Currently, I'm actively seeking new opportunities where I can contribute my skills and continue growing as a developer.
-        </p>
-      </div>
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a href="#projects"
+         class="px-8 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition">
+        View Projects
+      </a>
+      <a href="#"
+         class="px-8 py-3 border border-blue-500 text-blue-400 font-semibold rounded-lg hover:bg-gray-800 transition">
+        Download CV
+      </a>
     </div>
   </div>
 </section>
 
-<!-- Typewriter Script -->
+<!-- ABOUT SECTION -->
+<section id="about" class="py-20 bg-gray-900">
+  <div class="container mx-auto px-6 max-w-4xl">
+    <h2 class="text-4xl font-bold text-center text-blue-400 mb-12">About Me</h2>
+
+    <!-- Terminal Box -->
+    <div class="bg-gray-800 text-blue-300 p-6 rounded-lg mb-8 font-mono text-lg leading-relaxed">
+
+      <div id="terminal">
+        <div class="terminal-line">$ python about_alex.py</div>
+        <div class="terminal-line">Initializing developer profile...</div>
+        <div class="terminal-line">Profile loaded successfully!</div>
+        <div class="terminal-line"></div>
+        <div class="terminal-line">class AlexNG:</div>
+        <div class="terminal-line">    def __init__(self):</div>
+        <div class="terminal-line">        self.name = "Alex NG"</div>
+        <div class="terminal-line">        self.role = "Python Developer"</div>
+        <div class="terminal-line">        self.passion = "Data Pattern Recognition"</div>
+        <div class="terminal-line">        self.status = "Job Seeking"</div>
+        <div class="terminal-line">        self.skills = "['Python','Power BI','Excel','SQL','Data Analysis']"</div>
+        <div class="terminal-line cursor"></div>
+      </div>
+       
+    </div>
+
+    <p class="text-gray-300 leading-relaxed text-lg">
+      I'm a dedicated Python developer with strong experience in data analysis,
+      machine learning concepts, and extracting business insights. I enjoy transforming
+      raw data into meaningful information and building applications that deliver
+      real value. I am currently seeking opportunities where I can apply my technical
+      skills, creativity, and problem-solving ability.
+    </p>
+  </div>
+</section>
+
+<!-- SKILLS SECTION -->
+<section id="skills" class="py-20 bg-gray-800 border-t border-gray-700">
+  <div class="container mx-auto px-6 max-w-4xl">
+    <h2 class="text-4xl font-bold text-center text-blue-400 mb-12">Skills</h2>
+
+    <div class="grid md:grid-cols-2 gap-8">
+
+      <!-- Programming -->
+      <div class="bg-gray-900 p-6 rounded-lg border border-gray-700">
+        <h3 class="text-xl font-bold mb-4 text-white">Programming</h3>
+
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between text-sm font-semibold">
+              <span>Python</span><span>95%</span>
+            </div>
+            <div class="h-2 bg-gray-700 rounded"><div class="h-full bg-blue-500 rounded" style="width:95%"></div></div>
+          </div>
+
+          <div>
+            <div class="flex justify-between text-sm font-semibold">
+              <span>SQL</span><span>85%</span>
+            </div>
+            <div class="h-2 bg-gray-700 rounded"><div class="h-full bg-blue-500 rounded" style="width:85%"></div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Software -->
+      <div class="bg-gray-900 p-6 rounded-lg border border-gray-700">
+        <h3 class="text-xl font-bold mb-4 text-white">Software</h3>
+
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between text-sm font-semibold">
+              <span>Power BI</span><span>98%</span>
+            </div>
+            <div class="h-2 bg-gray-700 rounded"><div class="h-full bg-blue-500 rounded" style="width:98%"></div></div>
+          </div>
+
+          <div>
+            <div class="flex justify-between text-sm font-semibold">
+              <span>Excel</span><span>92%</span>
+            </div>
+            <div class="h-2 bg-gray-700 rounded"><div class="h-full bg-blue-500 rounded" style="width:92%"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section id="projects" class="py-20 bg-gray-900">
+  <div class="container mx-auto px-6 max-w-6xl">
+    <h2 class="text-4xl font-bold text-center text-blue-400 mb-12">Projects</h2>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <!-- Project 1 -->
+      <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+        <h3 class="text-xl font-bold mb-2 text-white">AirBNB Project - Data Analysis</h3>
+
+        <p class="text-gray-400 mb-4">
+          • SCRUM to manage team <br>
+          • Python for cleaning <br>
+          • Power BI dashboard
+        </p>
+
+        <a href="https://www.youtube.com/watch?v=mCXre-gHsK4"
+           target="_blank"
+           class="inline-block px-4 py-2 bg-red-600 text-white rounded-lg mb-4 hover:bg-red-700">
+          ▶ View on YouTube
+        </a>
+
+        <div class="flex gap-2 flex-wrap text-sm">
+          <span class="px-3 py-1 bg-blue-900 text-blue-300 rounded-full">Python</span>
+          <span class="px-3 py-1 bg-blue-900 text-blue-300 rounded-full">Pandas</span>
+          <span class="px-3 py-1 bg-blue-900 text-blue-300 rounded-full">Power BI</span>
+        </div>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="bg-gray-800 p-6 rounded-lg border border-gray-700">
+        <h3 class="text-xl font-bold mb-2 text-white">Butterfly Species Recognition (ML)</h3>
+
+        <p class="text-gray-400 mb-4">
+          • PyTorch training <br>
+          • ResNet-50 transfer learning <br>
+          • Gradio web demo
+        </p>
+
+        <a href="https://raw.githubusercontent.com/alexkin15/Butterfly-ID/refs/heads/main/screenshot%202.png"
+           target="_blank">
+          <img src="https://raw.githubusercontent.com/alexkin15/Butterfly-ID/refs/heads/main/screenshot%202.png"
+               class="rounded-lg mb-4 hover:opacity-80 transition"/>
+        </a>
+
+        <div class="flex gap-3 mb-4">
+          <a href="https://huggingface.co/spaces/alexkin15/Butterfly-ID"
+             target="_blank"
+             class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+            Try Online
+          </a>
+          <a href="https://github.com/alexkin15/Butterfly-ID"
+             target="_blank"
+             class="px-4 py-2 bg-gray-700 text-white rounded-lg hover:bg-gray-600">
+            GitHub Repo
+          </a>
+        </div>
+
+        <div class="flex gap-2 flex-wrap text-sm">
+          <span class="px-3 py-1 bg-blue-900 text-blue-300 rounded-full">Python</span>
+          <span class="px-3 py-1 bg-blue-900 text-blue-300 rounded-full">Machine Learning</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="py-20 bg-gray-800 border-t border-gray-700">
+  <div class="container mx-auto px-6 max-w-3xl text-center">
+    <h2 class="text-4xl font-bold text-blue-400 mb-12">Contact</h2>
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <div class="bg-gray-900 p-6 rounded-lg border border-gray-700">
+        <h3 class="font-bold text-lg mb-2 text-white">Email</h3>
+        <p class="text-gray-300">kinkinalexkin@gmail.com</p>
+      </div>
+
+      <div class="bg-gray-900 p-6 rounded-lg border border-gray-700">
+        <h3 class="font-bold text-lg mb-2 text-white">LinkedIn</h3>
+        <a href="https://www.linkedin.com/in/hoi-kin-alex-ng-50242412b/"
+           target="_blank"
+           class="text-blue-400 font-semibold hover:underline">
+          Open LinkedIn Profile
+        </a>
+      </div>
+
+      <div class="bg-gray-900 p-6 rounded-lg border border-gray-700">
+        <h3 class="font-bold text-lg mb-2 text-white">GitHub</h3>
+        <a href="https://github.com/alexkin15"
+           target="_blank"
+           class="text-blue-400 font-semibold hover:underline">
+          Open GitHub
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- TYPING SCRIPT -->
 <script>
-  const textLines = [
-    "$ python about_alex.py",
-    "Initializing developer profile...",
-    "Profile loaded successfully!",
-    "class AlexNG:",
-    "    def __init__(self):",
-    "        self.name = 'Alex NG'",
-    "        self.role = 'Python Developer'",
-    "        self.passion = 'Data Pattern Recognition'",
-    "        self.status = 'Job Seeking'",
-    "        self.skills = ['Python','Power BI','Excel','SQL','Data Analysis']",
-  ];
+  const lines = document.querySelectorAll(".terminal-line");
+  let index = 0;
 
-  const content = document.getElementById("terminal-content");
-
-  let line = 0;
-  let char = 0;
-  let typingSpeed = 2; // 打字速度 (毫秒)
-  let delayBetweenLines = 400; // 每行之間停頓時間
-
-  function typeLine() {
-    if (line < textLines.length) {
-      if (char < textLines[line].length) {
-        content.innerHTML += textLines[line][char];
-        char++;
-        setTimeout(typeLine, typingSpeed);
-      } else {
-        content.innerHTML += "<br>";
-        char = 0;
-        line++;
-        setTimeout(typeLine, delayBetweenLines);
-      }
-    } else {
-      // 打完全部行後，顯示閃爍光標
-      const cursor = document.createElement("span");
-      cursor.classList.add("typing-cursor");
-      cursor.textContent = "_";
-      content.appendChild(cursor);
+  function showNextLine() {
+    if (index < lines.length) {
+      lines[index].style.opacity = 1;
+      index++;
+      setTimeout(showNextLine, 450);
     }
   }
 
-  typeLine();
+  showNextLine();
 </script>
-
-<style>
-  .typing-cursor {
-    display: inline-block;
-    margin-left: 4px;
-    animation: blink 1s infinite;
-  }
-  @keyframes blink {
-    0%, 50% { opacity: 1; }
-    51%, 100% { opacity: 0; }
-  }
-</style>
-
-  <!-- Skills -->
-  <section id="skills" class="py-20 bg-gray-50">
-    <div class="container mx-auto px-6">
-      <h2 class="retro-font text-4xl font-bold text-center neon-text mb-12">TECHNICAL_SKILLS.EXE</h2>
-      <div class="max-w-3xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-8">
-          <div class="cyber-border p-6 hover-glow">
-            <h3 class="retro-font text-2xl font-bold text-purple-700 mb-4">PROGRAMMING</h3>
-            <div class="space-y-4">
-              <div>
-                <div class="flex justify-between mb-2"><span class="font-semibold">Python</span><span class="text-cyan-600">95%</span></div>
-                <div class="bg-gray-200 rounded-full h-2"><div class="skill-bar w-[95%] rounded-full"></div></div>
-              </div>
-              <div>
-                <div class="flex justify-between mb-2"><span class="font-semibold">SQL</span><span class="text-cyan-600">85%</span></div>
-                <div class="bg-gray-200 rounded-full h-2"><div class="skill-bar w-[90%] rounded-full"></div></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="cyber-border p-6 hover-glow">
-            <h3 class="retro-font text-2xl font-bold text-purple-700 mb-4">SOFTWARE</h3>
-            <div class="space-y-4">
-              <div>
-                <div class="flex justify-between mb-2"><span class="font-semibold">Power BI</span><span class="text-cyan-600">98%</span></div>
-                <div class="bg-gray-200 rounded-full h-2"><div class="skill-bar w-[95%] rounded-full"></div></div>
-              </div>
-              <div>
-                <div class="flex justify-between mb-2"><span class="font-semibold">Excel</span><span class="text-cyan-600">92%</span></div>
-                <div class="bg-gray-200 rounded-full h-2"><div class="skill-bar w-[90%] rounded-full"></div></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="cyber-border p-6 hover-glow md:col-span-2">
-            <h3 class="retro-font text-2xl font-bold text-purple-700 mb-4">SKILL</h3>
-            <div class="grid md:grid-cols-2 gap-6">
-              <div>
-                <div class="flex justify-between mb-2"><span class="font-semibold">Problem Solving</span><span class="text-cyan-600">98%</span></div>
-                <div class="bg-gray-200 rounded-full h-2"><div class="skill-bar w-[88%] rounded-full"></div></div>
-              </div>
-              <div>
-                <div class="flex justify-between mb-2"><span class="font-semibold">Pattern Recognition</span><span class="text-cyan-600">88%</span></div>
-                <div class="bg-gray-200 rounded-full h-2"><div class="skill-bar w-[88%] rounded-full"></div></div>
-              </div>
-              <div>
-                <div class="flex justify-between mb-2"><span class="font-semibold">Business Analysis</span><span class="text-cyan-600">95%</span></div>
-                <div class="bg-gray-200 rounded-full h-2"><div class="skill-bar w-[92%] rounded-full"></div></div>
-              </div>
-              <div>
-                <div class="flex justify-between mb-2"><span class="font-semibold">Data Analysis</span><span class="text-cyan-600">96%</span></div>
-                <div class="bg-gray-200 rounded-full h-2"><div class="skill-bar w-[92%] rounded-full"></div></div>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects -->
-  <section id="projects" class="py-20 bg-white">
-    <div class="container mx-auto px-6">
-      <h2 class="retro-font text-4xl font-bold text-center neon-text mb-12">PROJECT_PORTFOLIO.ZIP</h2>
-      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-
-        <!-- Project 1 -->
-        <div class="cyber-border p-6 hover-glow">
-          <div class="w-full h-40 bg-gradient-to-br from-cyan-100 to-purple-100 rounded-lg mb-4 flex items-center justify-center">
-            <span class="retro-font text-2xl text-purple-700">DATA_VIZ</span>
-          </div>
-          <h3 class="retro-font text-xl font-bold text-purple-700 mb-2">AirBNB Project - Data Analysis</h3>
-          <p class="text-gray-600 mb-4">- SCRUM to manage team and tasks<br>- Python to clean data <br>- Power BI interactive dashboard</p>
-<!-- YouTube Button -->
-  <a href="https://www.youtube.com/watch?v=mCXre-gHsK4"
-     target="_blank"
-     rel="noopener noreferrer"
-     class="inline-block mb-4 px-4 py-2 bg-red-100 text-red-700 font-medium rounded-full hover:bg-red-200 transition">
-    ▶️ View in YouTube
-</a>          
-<div class="flex gap-2 flex-wrap">
-            <span class="px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-sm">Python</span>
-            <span class="px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-sm">Pandas</span>
-            <span class="px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-sm">Power BI</span>
-          </div>
-        </div>
-
-        <!-- Project 2: Machine Learning (with image between description and buttons) -->
-        <div class="cyber-border p-6 hover-glow">
-          <div class="w-full h-40 bg-gradient-to-br from-green-100 to-blue-100 rounded-lg mb-4 flex items-center justify-center">
-            <span class="retro-font text-2xl text-purple-700">MACHINE LEARNING</span>
-          </div>
-
-          <h3 class="retro-font text-xl font-bold text-purple-700 mb-2">
-            Machine learning based butterfly species identification system.
-          </h3>
-
-          <p class="text-gray-600 mb-4 text-justify">
-            - PyTorch for model training <br>
-            - ResNet-50 for transfer learning <br>
-            - Gradio web app for user-friendly species recognition and information
-          </p>
-
-          <!-- Clickable image (opens in new tab) -->
-          <a href="https://raw.githubusercontent.com/alexkin15/Butterfly-ID/refs/heads/main/screenshot%202.png"
-             target="_blank" rel="noopener noreferrer">
-            <div class="w-full h-48 mb-4 overflow-hidden rounded-lg">
-              <img
-                src="https://raw.githubusercontent.com/alexkin15/Butterfly-ID/refs/heads/main/screenshot%202.png"
-                alt="Butterfly Identifier Screenshot"
-                class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-          </a>
-
-          <!-- Buttons -->
-          <div class="flex flex-wrap gap-3 mb-4">
-            <a href="https://huggingface.co/spaces/alexkin15/Butterfly-ID"
-               target="_blank" rel="noopener noreferrer"
-               class="inline-block px-4 py-2 bg-cyan-100 text-cyan-700 font-medium rounded-full hover:bg-cyan-200 transition">
-              🦋 Try it Online
-            </a>
-            <a href="https://github.com/alexkin15/Butterfly-ID"
-               target="_blank" rel="noopener noreferrer"
-               class="inline-block px-4 py-2 bg-purple-100 text-purple-700 font-medium rounded-full hover:bg-purple-200 transition">
-              💻 View in GitHub
-            </a>
-          </div>
-
-          <div class="flex gap-2 flex-wrap">
-            <span class="px-3 py-1 bg-cyan-100 text-cyan-700 rounded-full text-sm">Python</span>
-            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">Machine Learning</span>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section id="contact" class="py-20 bg-gradient-to-br from-purple-50 to-cyan-50">
-    <div class="container mx-auto px-6">
-      <h2 class="retro-font text-4xl font-bold text-center neon-text mb-12">CONTACT_PROTOCOL.INIT</h2>
-      <div class="max-w-2xl mx-auto">
-        <div class="cyber-border p-8">
-          <div class="text-center mb-8">
-            <p class="text-lg text-gray-700 mb-4">Ready to collaborate? Let's connect!</p>
-            <p class="text-gray-600">I'm actively seeking new opportunities and exciting projects.</p>
-          </div>
-          <div class="grid md:grid-cols-2 gap-6">
-            <div class="text-center p-4 border border-cyan-300 rounded-lg hover-glow">
-              <div class="retro-font text-xl font-bold text-purple-700 mb-2">EMAIL.EXE</div>
-              <p class="text-gray-600">kinkinalexkin@gmail.com</p>
-            </div>
-
-            <div class="text-center p-4 border border-cyan-300 rounded-lg hover-glow">
-              <div class="retro-font text-xl font-bold text-purple-700 mb-2">LINKEDIN.COM</div>
-              <a href="https://www.linkedin.com/in/hoi-kin-alex-ng-50242412b/"
-                 class="inline-block mt-2 px-4 py-2 bg-cyan-100 text-cyan-700 rounded-full hover:bg-cyan-200 transition"
-                 target="_blank" rel="noopener noreferrer">
-                Open LinkedIn Profile
-              </a>
-            </div>
-
-            <div class="text-center p-4 border border-cyan-300 rounded-lg hover-glow">
-              <div class="retro-font text-xl font-bold text-purple-700 mb-2">GITHUB.IO</div>
-              <a href="https://github.com/alexkin15"
-                 class="inline-block mt-2 px-4 py-2 bg-cyan-100 text-cyan-700 rounded-full hover:bg-cyan-200 transition font-medium"
-                 target="_blank" rel="noopener noreferrer">
-                Open my Github
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
 </body>
 </html>
